@@ -136,16 +136,16 @@ $row2=mysqli_fetch_array($result2);
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown submenu active">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Home <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                홈 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <!--<ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="index.html">Home Simple</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-carousel.html">Home Carousel</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-fullwidth.html">Home Full Width</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-parallax.html">Home Parallax</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-sidebar.html">Home Boxed</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
-                                </ul>
+                                </ul>-->
                             </li>
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -179,8 +179,6 @@ $row2=mysqli_fetch_array($result2);
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">lookbook</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -319,18 +317,28 @@ $row2=mysqli_fetch_array($result2);
             </div>
         </section>
         <!--================End Feature Add Area =================-->
-        
+        <?php
+		$sql = "SELECT * FROM BookDetail";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_array($result);
+		$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+		$result2 = mysqli_query($conn,$sql);
+		$row2=mysqli_fetch_array($result2);
+		?>
         <!--================Our Latest Product Area =================-->
         <section class="our_latest_product">
             <div class="container">
                 <div class="s_m_title">
-                    <h2>Our Latest Product</h2>
+                    <h2>신간도서</h2>
                 </div>
                 <div class="l_product_slider owl-carousel">
-                    <div class="item">
+				<?php
+				for($i=0; $i<$result->num_rows; $i++){
+				?>
+                    <?php if($i%2==0) ?><div class="item">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img src="img/product/l-product-1.jpg" alt="">
+                                <img src="img/thumbnail/<?php echo $row['Image'];?>.jpg" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -338,116 +346,19 @@ $row2=mysqli_fetch_array($result2);
                                     <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
-                                <h4>Womens Libero</h4>
-                                <h5><del>$45.50</del>  $40</h5>
+                                <h4><?php echo $row2['Title']?></h4>
+                                <h5><?php echo $row2['Price']?></h5>
                             </div>
                         </div>
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-5.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Oxford Shirt</h4>
-                                <h5>$85.50</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-2.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Travel Bags</h4>
-                                <h5><del>$45.50</del>  $40</h5>
-                            </div>
-                        </div>
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-6.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>High Heel</h4>
-                                <h5><del>$130.50</del>  $110</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-3.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Summer Dress</h4>
-                                <h5>$45.05</h5>
-                            </div>
-                        </div>
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-7.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Fossil Watch</h4>
-                                <h5>$250.00</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-4.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Nike Shoes</h4>
-                                <h5><del>$130</del> $110</h5>
-                            </div>
-                        </div>
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/l-product-8.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                               <ul>
-                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                </ul>
-                                <h4>Ricky Shirt</h4>
-                                <h5>$45.05</h5>
-                            </div>
-                        </div>
-                    </div>
+                    <?php if($i%2==0) ?></div>
+					<?php 
+				$row = mysqli_fetch_array($result);
+				$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+				$result2 = mysqli_query($conn,$sql);
+				$row2=mysqli_fetch_array($result2);
+				} ?>
                 </div>
+				
             </div>
         </section>
         <!--================End Our Latest Product Area =================-->
