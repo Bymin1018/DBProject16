@@ -179,7 +179,7 @@
                             </h6>
                             
                             <h6>ISBN <B><?php echo $ISBN;?></h6>
-                            <h2><?php echo $row['Price'].원;?></h2>
+                            <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
                                 <div class="custom">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
