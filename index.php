@@ -228,7 +228,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-responsive_offset="on" 
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']">
-                                    <a class="checkout_btn" href="#">read more</a>
+                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
                                 </div>
                             </div>
                         </li>
@@ -274,7 +274,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-responsive_offset="on" 
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']">
-                                    <a class="checkout_btn" href="#">read more</a>
+                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
                                 </div>
                             </div>
                         </li>
@@ -343,7 +343,7 @@ $row2=mysqli_fetch_array($result2);
                             <div class="l_p_text">
                                 <ul>
                                     <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
+                                    <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
                                 <h4><?php echo $row2['Title']?></h4>
