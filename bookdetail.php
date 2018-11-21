@@ -172,13 +172,13 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="product_details_text">
-                            <h1><B><?php echo $row['Title'];?></h1>
+                            <h1><B><?php echo $row['Title'];?></h1><br>
                             <h6>저자 <B><?php echo $row['Author'];?></B><t>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</t>
                                 <t>출판사 <strong><?php echo $row['Publisher'];?></strong></t><t>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</t>
                                 <t><?php echo $row['PublishedDate'];?></t>
                             </h6>
                             
-                            <h6>ISBN <B><?php echo $ISBN;?></h6>
+                            <h6>ISBN <B><?php echo $ISBN;?></h6><br>
                             <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
                                 <div class="custom">
@@ -248,7 +248,7 @@
                                         </div>
                                         <div class="l_p_text">
                                             <h4><?php echo $row3['Title'];?></h4>
-                                            <h5><?php echo $row3['Price'].원;?></h5>
+                                            <h5><?php echo $row3['Price'];?>원</h5>
                                         </div>
                                      </div>
                                 </div>
