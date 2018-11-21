@@ -61,23 +61,18 @@
                             <div class="top_header_left">
                                 <div class="selector">
                                     <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                      <option value='yt' data-image="img/icon/flag-1.png" data-imagecss="flag yt" data-title="English">English</option>
-                                      <option value='yu' data-image="img/icon/flag-1.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
-                                      <option value='yt' data-image="img/icon/flag-1.png" data-imagecss="flag yt" data-title="English">English</option>
-                                      <option value='yu' data-image="img/icon/flag-1.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
+                                        <option value='yt' data-image="img/icon/flag-1.png" data-imagecss="flag yt" data-title="English">한국어</option>
                                     </select>
                                 </div>
                                 <select class="selectpicker usd_select">
-                                    <option>USD</option>
-                                    <option>$</option>
-                                    <option>$</option>
+                                    <option>KRW</option>
                                 </select>
                             </div>
                         </div>
                         <div class="float-md-right">
                             <div class="top_header_middle">
-                                <a href="#"><i class="fa fa-phone"></i> Call Us: <span>+84 987 654 321</span></a>
-                                <a href="#"><i class="fa fa-envelope"></i> Email: <span>support@yourdomain.com</span></a>
+                                <a href="#"><i class="fa fa-phone"></i> 대표자 번호 : <span>010 1234 5678</span></a>
+                                <a href="#"><i class="fa fa-envelope"></i> Email : <span>wns1119@gmail.com</span></a>
                             </div>
                         </div>
                     </div>
@@ -139,8 +134,6 @@
                                         <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">lookbook</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                             </ul>
                             <ul class="navbar-nav justify-content-end">
@@ -247,6 +240,11 @@
                                             <img class="img-fluid" src="img/thumbnail/<?php echo $row4['Image'] ?>.jpg" alt="">
                                         </div>
                                         <div class="l_p_text">
+                                            <ul>
+                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row3['ISBN']?>">상세정보</a></li>
+                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                            </ul>
                                             <h4><?php echo $row3['Title'];?></h4>
                                             <h5><?php echo $row3['Price'];?>원</h5>
                                         </div>
