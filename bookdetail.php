@@ -81,7 +81,7 @@
             <div class="carousel_menu_inner">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
+                        <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
 
@@ -176,7 +176,7 @@
                             <div class="quantity">
                                 <div class="custom">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
+                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div>
                                 <a class="add_cart_btn" href="#">add to cart</a>
@@ -241,9 +241,7 @@
                                         </div>
                                         <div class="l_p_text">
                                             <ul>
-                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
                                                 <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row3['ISBN']?>">상세정보</a></li>
-                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                             </ul>
                                             <h4><?php echo $row3['Title'];?></h4>
                                             <h5><?php echo $row3['Price'];?>원</h5>

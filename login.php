@@ -187,27 +187,29 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="login_title">
-                                <h2>create account</h2>
-                                <p>Follow the steps below to create email account enjoy the great mail.com emailing experience. Vivamus tempus risus vel felis condimentum, non vehicula est iaculis.</p>
+                                <h2>회원가입</h2>
                             </div>
-                            <form class="login_form row">
+                            <form class="login_form row" action="./create_account.php" method="post">
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Name">
+                                    <input class="form-control" type="text" placeholder="이름" name="name">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="email" placeholder="Email">
+                                    <input class="form-control" type="text" placeholder="ID" name="id">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="User Name">
+                                    <input class="form-control" type="text" placeholder="주소" name="address">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Phone">
+                                    <input class="form-control" type="text" placeholder="나이" name="age">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Password">
+                                    <input class="form-control" type="text" placeholder="성별" name="sex">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Re-Password">
+                                    <input class="form-control" type="password" placeholder="비밀번호" name="pw">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="password" placeholder="비밀번호 확인">
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <button type="submit" value="submit" class="btn subs_btn form-control">register now</button>
