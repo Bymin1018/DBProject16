@@ -81,11 +81,13 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <option>KRW</option>
                             </select>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+							<form action="./search.php" method = "post">
+                                <input type="search" name="search" id="search" onkeydown="submit" class="form-control" placeholder="검색" aria-label="Search">
                                 <span class="input-group-btn">
                                 <button class="btn btn-secondary" type="button"><i class="icon-magnifier"></i></button>
                                 </span>
-                            </div>
+                            </form>
+							</div>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -817,7 +819,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="vendors/magnify-popup/jquery.magnific-popup.min.js"></script>
         <script src="vendors/vertical-slider/js/jQuery.verticalCarousel.js"></script>
         <script src="vendors/jquery-ui/jquery-ui.js"></script>
-        
         <script src="js/theme.js"></script>
     </body>
 </html>
