@@ -14,6 +14,17 @@ $result = mysqli_query($conn, $sql);
 $sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
 $result2 = mysqli_query($conn,$sql);
 $row2=mysqli_fetch_array($result2);
+$sql = "SELECT distinct O.ISBN, Total
+  FROM Order_ AS O
+  JOIN (SELECT ISBN, SUM(Amount) AS Total
+          FROM Order_
+         GROUP BY ISBN
+       ) AS s ON O.ISBN = s.ISBN order by Total desc;";
+$bestresult = mysqli_query($conn,$sql);
+$bestrow=mysqli_fetch_array($bestresult);
+$sql = "select * from Book where ISBN = '".$bestrow['ISBN']."'";
+$bestrowtitlequery = mysqli_query($conn,$sql);
+$bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +92,7 @@ $row2=mysqli_fetch_array($result2);
                         <div class="top_header_middle">
                             <a href="#"><i class="fa fa-phone"></i> 대표자 번호 : <span>010 1234 5678</span></a>
                             <a href="#"><i class="fa fa-envelope"></i> Email : <span>wns1119@gmail.com</span></a>
-                            <div style="margin-top:20px;vertical-align:middle;text-align:middle;"><h1>책's</div>
+                            <div style="vertical-align:middle;text-align:middle;"><img src="img/logo.png"></div>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -188,13 +199,14 @@ $row2=mysqli_fetch_array($result2);
         <!--================End Menu Area =================-->
         
         <!--================Slider Area =================-->
-        <section class="main_slider_area">
-            <div class="container">
+		<section class="main_slider_area">
+			<div class="container" style="margin-top:20px">
+			<a style="text-align:center;"><h1> 베스트 셀러 </h1></a>
                 <div id="main_slider" class="rev_slider" data-version="5.3.1.6">
                     <ul>
                         <li data-index="rs-1587" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-1.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src="img/thumbnail/<?php echo $row['Image'] ?>.jpg"  alt="" style="width:50%" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                        <img src="img/thumbnail/<?php echo $bestrowtitle['ISBN'] ?>.jpg"  alt="" style="width:50%" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
 
                             <!-- LAYER NR. 1 -->
                             <div class="slider_text_box">
@@ -214,7 +226,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-transform_idle="o:1;"
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']"
-                                    ><?php echo $row2['Title']?> 
+                                    >1위<BR> <?php echo $bestrowtitle['Title']?> 
                                 </div>
 					
                                 <div class="tp-caption tp-resizeme third_btn" 
@@ -228,7 +240,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-responsive_offset="on" 
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']">
-                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
+                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $bestrowtitle['ISBN']?>">상세정보</a>
                                 </div>
                             </div>
                         </li>
@@ -239,8 +251,12 @@ $row2=mysqli_fetch_array($result2);
 								$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
 								$result2 = mysqli_query($conn,$sql);
 								$row2=mysqli_fetch_array($result2);
+								$bestrow=mysqli_fetch_array($bestresult);
+								$sql = "select * from Book where ISBN = '".$bestrow['ISBN']."'";
+								$bestrowtitlequery = mysqli_query($conn,$sql);
+								$bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 								?>
-                        <img src="img/thumbnail/<?php echo $row['Image'];?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                        <img src="img/thumbnail/<?php echo $bestrowtitle['ISBN'];?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
                             <!-- LAYERS -->
 
@@ -260,7 +276,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-transform_idle="o:1;"
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']"
-                                    ><?php echo $row2['Title']; ?>
+                                    >2위<BR> <?php echo $bestrowtitle['Title']; ?>
                                 </div>
 
                                 <div class="tp-caption tp-resizeme third_btn" 
@@ -274,7 +290,7 @@ $row2=mysqli_fetch_array($result2);
                                     data-responsive_offset="on" 
                                     data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                                     data-textAlign="['left','left','left','left','left','center']">
-                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
+                                    <a class="checkout_btn" href="/bookdetail.php?ISBN=<?php echo $bestrowtitle['ISBN']?>">상세정보</a>
                                 </div>
                             </div>
                         </li>
@@ -347,7 +363,7 @@ $row2=mysqli_fetch_array($result2);
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
                                 <h4><?php echo $row2['Title']?></h4>
-                                <h5><?php echo $row2['Price']?></h5>
+                                <h5><?php echo $row2['Price']?>원</h5>
                             </div>
                         </div>
                     <?php if($i%2==0) ?></div>
