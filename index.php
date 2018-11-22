@@ -337,7 +337,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 		$sql = "SELECT * FROM BookDetail";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($result);
-		$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+		$sql = "SELECT * FROM Book order by PublishedDate desc";
 		$result2 = mysqli_query($conn,$sql);
 		$row2=mysqli_fetch_array($result2);
 		?>
@@ -349,17 +349,17 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                 </div>
                 <div class="l_product_slider owl-carousel">
 				<?php
-				for($i=0; $i<$result->num_rows; $i++){
+				for($i=0; $i<10; $i++){
 				?>
                     <?php if($i%2==0) ?><div class="item">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img src="img/thumbnail/<?php echo $row['Image'];?>.jpg" alt="">
+                                <img src="img/thumbnail/<?php echo $row2['ISBN'];?>.jpg" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
                                     <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                    <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a></li>
+                                    <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row2['ISBN']?>">상세정보</a></li>
                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                 </ul>
                                 <h4><?php echo $row2['Title']?></h4>
@@ -368,9 +368,9 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                         </div>
                     <?php if($i%2==0) ?></div>
 					<?php 
-				$row = mysqli_fetch_array($result);
-				$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
-				$result2 = mysqli_query($conn,$sql);
+				//$row = mysqli_fetch_array($result);
+				//$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+				//$result2 = mysqli_query($conn,$sql);
 				$row2=mysqli_fetch_array($result2);
 				} ?>
                 </div>
