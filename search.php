@@ -165,7 +165,7 @@
                                 <t><?php echo $row['PublishedDate'];?></t>
                             </h6>
                             
-                            <h6>ISBN <B><?php echo $ISBN;?></h6><br>
+                            <h6>ISBN <B><?php echo $row['ISBN'];?></h6><br>
                             <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
                                 <a class="add_cart_btn" href="/BookDetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
