@@ -211,7 +211,26 @@
                         <h5><?php echo $row2['Summary']?></h5>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <h4>Rocky Ahmed</h4>
+					<?php
+					$sql3 = 'SELECT * FROM ReviewBoard WHERE ISBN=\''.$ISBN.'\'';
+					$result3 = mysqli_query($conn, $sql3);
+					$row3 = mysqli_fetch_array($result3);
+					if($result3->num_rows==0) {
+							?>
+							<h4 style="text-align:center">아직 작성된 리뷰가 없습니다.</h4>
+							<?php
+						}
+					for($i = 0; $i<$result3->num_rows;$i++){
+					?>
+						<a style="color:#BBBBBB"><h6>작성자 : <?php echo $row3['ID']?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row3['Date_']?></h6></a><BR>
+						<h4><?php echo $row3['Title']?></h4><BR>
+						<h6><?php echo $row3['Body']?></h6><BR>
+						<hr></hr>
+					<?php
+					$row3 = mysqli_fetch_array($result3);
+					}
+					?>
+                        
                     </div>
                 </div>
             </div>
