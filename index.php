@@ -105,8 +105,8 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                             </ul>
                             <ul class="top_right">
-                                <li class="user"><a href="#"><i class="icon-user icons"></i></a></li>
-                                <li class="cart"><a href="#"><i class="icon-handbag icons"></i></a></li>
+                                <li class="user"><a href="/login.php"><span title="로그인"><i class="icon-user icons"></i></span></a></li>
+                                <li class="cart"><a href="#"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
                                 <li class="h_price">
                                     <select class="selectpicker">
                                         <option>$0.00</option>
@@ -202,6 +202,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 		<section class="main_slider_area">
 			<div class="container" style="margin-top:20px">
 			<a style="text-align:center;"><h1> 베스트 셀러 </h1></a>
+			<hr></hr>
                 <div id="main_slider" class="rev_slider" data-version="5.3.1.6">
                     <ul>
                         <li data-index="rs-1587" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-1.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
@@ -344,6 +345,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
         <!--================Our Latest Product Area =================-->
         <section class="our_latest_product">
             <div class="container">
+			<hr></hr>
                 <div class="s_m_title">
                     <h2>신간도서</h2>
                 </div>
