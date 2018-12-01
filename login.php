@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,7 +38,16 @@
         <![endif]-->
     </head>
     <body>
-        
+        <?php
+		if($_SESSION['logged'] == "YES"){
+			?>
+			<script>
+			alert("이미 로그인되어있습니다.");
+			history.back();
+			</script>
+			<?php
+		}
+		?>
         <!--================Menu Area =================-->
         <header class="shop_header_area carousel_menu_area">
             <div class="carousel_top_header row m0">
@@ -165,12 +175,12 @@
                                 <h2>log in your account</h2>
                                 <p>Log in to your account to discovery all great features in this template.</p>
                             </div>
-                            <form class="login_form row">
+                            <form action = "/do_login.php" method = "post" class="login_form row">
                                 <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="text" placeholder="Name">
+                                    <input name="id" id = "id" class="form-control" type="id" placeholder="ID">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="text" placeholder="User Name">
+                                    <input name="pwd" id = "pwd" class="form-control" type="password" placeholder="Password">
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <div class="creat_account">

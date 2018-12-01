@@ -1,4 +1,5 @@
-<?php
+<?php session_start();
+
 $conn = mysqli_connect(
   '35.236.158.28',
   'root',
@@ -100,6 +101,16 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                     <div class="col-lg-3">
                         <div class="top_right_header">
                             <ul class="header_social">
+								<li><?php
+								if($_SESSION['logged'] == "YES"){ ?>
+								<a href="/do_logout.php">로그아웃</a>
+								<?php
+								}
+								else{ ?>
+								<a href="/login.php">로그인</a>
+								<?php
+								}
+								?></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
@@ -107,8 +118,14 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                             </ul>
                             <ul class="top_right">
-                                <li class="user"><a href="/login.php"><span title="로그인"><i class="icon-user icons"></i></span></a></li>
-                                <li class="cart"><a href="#"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
+                                <?php
+								if($_SESSION['logged'] == "YES"){
+								?>
+								<li class="user"><a href="/"><span title="내 정보"><i class="icon-user icons"></i></span></a></li>
+                                <?php
+								}
+								?>
+								<li class="cart"><a href="#"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
                                 <li class="h_price">
                                     <select class="selectpicker">
                                         <option>$0.00</option>
