@@ -230,7 +230,18 @@
 					$row3 = mysqli_fetch_array($result3);
 					}
 					?>
-                        
+                    <?php
+					if( $_SESSION['logged'] == "YES" ){
+					?>
+					<hr></hr>
+					<form action="/do_review.php?ISBN=<?php echo $_GET["ISBN"]?>" method="post">
+					<input type=text name="title"id="title" style="border:none;text-align:center;width:15%;" placeholder = "제목" >
+					<input type=text name="body" id="body" style="border:none;text-align:center;width:70%;" placeholder = "이 책에 대한 리뷰가 있으신가요? 당신의 리뷰를 작성해 주세요." >
+					<input class="add_cart_btn" style="width:14%;text-align:center;" type = "submit" value="리뷰작성"/>
+					</form>
+					<?php
+					}
+					?>
                     </div>
                 </div>
             </div>
