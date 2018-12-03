@@ -213,7 +213,11 @@
                                     <input class="form-control" type="text" placeholder="나이" name="age">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="성별" name="sex">
+								<select name="sex" style="width:100%;height:100%">
+									<option value="">성별선택</option>
+									<option value="M">남자</option>
+									<option value="W">여자</option>
+								</select>
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <input class="form-control" type="password" placeholder="비밀번호" name="pw">
