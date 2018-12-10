@@ -11,6 +11,7 @@
     $sql2 = 'SELECT * FROM BookDetail WHERE ISBN=\''.$ISBN.'\'';
     $result2 = mysqli_query($conn, $sql2);
     $row2 = mysqli_fetch_array($result2);
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -179,7 +180,9 @@
                                     <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div>
-                                <a class="add_cart_btn" href="#">add to cart</a>
+
+                                <div class="add_cart_btn" id="cart">add to cart</div>
+
                             </div>
                             <div class="shareing_icon">
                                 <ul>
@@ -289,6 +292,17 @@
                 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
+        <script type="text/javascript">
+            $("#cart").click(function(){
+            <?php
+
+                $cartSQL = "INSERT INTO Order_(ISBN,CustomerNumber,Amount,State,Date_) VALUES(\"".$ISBN."\",".$_SESSION['user_n'].",1,0,now())";
+                $cartresult = mysqli_query($conn, $cartSQL);
+            ?>
+
+        });                                    
+        </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
