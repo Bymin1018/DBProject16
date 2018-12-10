@@ -10,6 +10,7 @@ $row = mysqli_fetch_array($result);
 
 if($result->num_rows>=1){
 	$_SESSION['user_id'] = $_POST["id"];
+	$_SESSION['user_n'] = $row['CustomerNumber'];
 	$_SESSION['logged'] = "YES";
 	header("Location: /index.php");
 	exit();
