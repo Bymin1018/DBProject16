@@ -181,7 +181,7 @@
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div>
 
-                                <div class="add_cart_btn" id="cart">add to cart</div>
+                                <a class="add_cart_btn" href="/addtocart.php?ISBN=<?php echo $ISBN?>">add to cart</a>
 
                             </div>
                             <div class="shareing_icon">
@@ -291,17 +291,7 @@
         <!--================End Related Product Area =================-->
                 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
-        <script type="text/javascript">
-            $("#cart").click(function(){
-            <?php
-
-                $cartSQL = "INSERT INTO Order_(ISBN,CustomerNumber,Amount,State,Date_) VALUES(\"".$ISBN."\",".$_SESSION['user_n'].",1,0,now())";
-                $cartresult = mysqli_query($conn, $cartSQL);
-            ?>
-
-        });                                    
+        <script src="js/jquery-3.2.1.min.js"></script>                                   
         </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/popper.min.js"></script>
