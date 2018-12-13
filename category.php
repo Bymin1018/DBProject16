@@ -147,7 +147,13 @@
         <!--================Product Details Area =================-->
         <section class="product_details_area">
             <div class="container">
-			<h2>카테고리 : '<?php echo $_GET['category']?>'</h2>
+			<h2>카테고리 : '<?php 
+			if($searchquery=="000") echo "소설";
+			else if($searchquery=="100") echo "시/에세이";
+			else if($searchquery=="200") echo "경제/경영";
+			else if($searchquery=="300") echo "자기계발";
+			else if($searchquery=="400") echo "인문";
+			?>'</h2>
 			<hr></hr>
 			<?php
 			if($result->num_rows==0) {?> <a style="text-align:center"><h2><?php echo "검색 결과가 없습니다.";?></h2></a><?php

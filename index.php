@@ -362,6 +362,55 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 				$row2=mysqli_fetch_array($result2);
 				} ?>
                 </div>
+				<hr></hr>
+                <div class="s_m_title">
+                    <h2>당신이 관심을 가질만한 도서</h2>
+                </div>
+                <div class="l_product_slider owl-carousel">
+				<?php
+		if($_SESSION['logged'] != "YES"){
+			echo "로그인 되어있지 않습니다. 추천도서는 로그인 사용자에게만 제공됩니다.";
+			
+		}
+		else{
+			echo "추천도서는 당신의 최근 구매내역에 따라 자동으로 분석되어 제공됩니다";
+			$sql = "select count(*) as coun, ISBN from Order_ group by ISBN order by coun desc";
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+			$sql = "select * from Book where ISBN=".$row['ISBN'];
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+			$sql = "select * from Book where Category=".$row['Category'];
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+		?>
+				<?php
+				for($i=0; $i<5; $i++){
+				?>
+                    <?php if($i%2==0) ?><div class="item">
+                        <div class="l_product_item">
+                            <div class="l_p_img">
+                                <img src="img/thumbnail/<?php echo $row['ISBN'];?>.jpg" alt="">
+                            </div>
+                            <div class="l_p_text">
+                                <ul>
+                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                    <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a></li>
+                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                </ul>
+                                <h4><?php echo $row['Title']?></h4>
+                                <h5><?php echo $row['Price']?>원</h5>
+                            </div>
+                        </div>
+                    <?php if($i%2==0) ?></div>
+					<?php 
+				//$row = mysqli_fetch_array($result);
+				//$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+				//$result2 = mysqli_query($conn,$sql);
+				$row=mysqli_fetch_array($result);
+				} 
+		}?>
+                </div>
 				
             </div>
         </section>
