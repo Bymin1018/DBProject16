@@ -4,10 +4,14 @@
   'root',
   '12341234',
   'dbproject');
-    $searchquery = $_GET["category"];
-    $sql = 'SELECT * FROM Book WHERE Category like "%'.$searchquery.'%"';
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
+	if( $_SESSION['logged'] == "YES" )
+    {
+        $USER_N = $_SESSION['user_n'];
+        //$sql = 'SELECT * FROM Order_ WHERE CustomerNumber='.$USER_N.' AND State=0';
+		$sql = "select count(*) as coun, ISBN from Order_ where CustomerNumber='".$USER_N."' AND State=0 group by ISBN order by coun desc";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+    }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +43,48 @@
         
         <link href="css/style.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
+		
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '제목');
+        data.addColumn('number', '개수');
+        data.addRows([
+		<?php
+		for($i=0;$i<$result->num_rows;$i++){
+		$sql2='select * from Book where ISBN='.$row['ISBN'];
+		$result2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_array($result2);
+		if($i+1!=$result->num_rows) echo "['".$row2['Title']."',".$row['coun']."],";
+		else echo "['".$row2['Title']."',".$row['coun']."]";
+		$row = mysqli_fetch_array($result);
+		}
+		?>
+        ]);
+
+        // Set chart options
+        var options = {'title':'구매한 책의 이름과 개수',
+                       'width':1000,
+                       'height':500};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -147,51 +193,16 @@
         <!--================Product Details Area =================-->
         <section class="product_details_area">
             <div class="container">
-			<h2>카테고리 : '<?php 
-			if($searchquery=="000") echo "소설";
-			else if($searchquery=="100") echo "시/에세이";
-			else if($searchquery=="200") echo "경제/경영";
-			else if($searchquery=="300") echo "자기계발";
-			else if($searchquery=="400") echo "인문";
-			?>'</h2>
+			<h2>나의 통계보기</h2>
 			<hr></hr>
-			<?php
-			if($result->num_rows==0) {?> <a style="text-align:center"><h2><?php echo "검색 결과가 없습니다.";?></h2></a><?php
-			}
-			for($i=0;$i<$result->num_rows;$i++){
-			?>
                 <div class="row">
-                    <img src="img/thumbnail/<?php echo $row['ISBN'] ?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
-                    <div class="col-lg-8">
-                        <div class="product_details_text">
-                            <h1><B><?php echo $row['Title'];?></h1><br>
-                            <h6>저자 <B><?php echo $row['Author'];?></B><t>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</t>
-                                <t>출판사 <strong><?php echo $row['Publisher'];?></strong></t><t>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</t>
-                                <t><?php echo $row['PublishedDate'];?></t>
-                            </h6>
-                            
-                            <h6>ISBN <B><?php echo $row['ISBN'];?></h6><br>
-                            <h2><?php echo $row['Price'];?>원</h2>
-                            <div class="quantity">
-                                <a class="add_cart_btn" href="/BookDetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
-                            </div>
-                            <div class="shareing_icon">
-                                <ul>
-                                    <li><a href="#"><i class="social_facebook"></i></a></li>
-                                    <li><a href="#"><i class="social_twitter"></i></a></li>
-                                    <li><a href="#"><i class="social_pinterest"></i></a></li>
-                                    <li><a href="#"><i class="social_instagram"></i></a></li>
-                                    <li><a href="#"><i class="social_youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+				<?php
+				if( $_SESSION['logged'] == "YES" ) echo "<div id='chart_div'></div>";
+				else echo "통계는 로그인 해야만 볼 수 있습니다";
+				?>
+                    
                 </div>
 				<hr></hr>
-			<?php
-			$row = mysqli_fetch_array($result);
-			}
-			?>
             </div>
         </section>
         <!--================End Product Details Area =================-->
