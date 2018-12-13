@@ -121,7 +121,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <?php
 								if($_SESSION['logged'] == "YES"){
 								?>
-								<li class="user"><a href="/"><span title="내 정보"><i class="icon-user icons"></i></span></a></li>
+								<li class="user"><a href="/stat.php"><span title="내 정보"><i class="icon-user icons"></i></span></a></li>
                                 <?php
 								}
 								?>
