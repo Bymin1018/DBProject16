@@ -175,12 +175,12 @@
                             <h6>ISBN <B><?php echo $ISBN;?></h6><br>
                             <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
-                                <div class="custom">
+                                <!--<div class="custom">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
                                     <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div>
-
+								-->
                                 <div class="add_cart_btn" id="cart">add to cart</div>
 
                             </div>
@@ -300,7 +300,7 @@
                 $cartSQL = "INSERT INTO Order_(ISBN,CustomerNumber,Amount,State,Date_) VALUES(\"".$ISBN."\",".$_SESSION['user_n'].",1,0,now())";
                 $cartresult = mysqli_query($conn, $cartSQL);
             ?>
-
+			alert("장바구니에 추가되었습니다");
         });                                    
         </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
