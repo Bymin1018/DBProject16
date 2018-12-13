@@ -1,17 +1,13 @@
-<?php session_start();
+<?php
     $conn = mysqli_connect(
   '35.236.158.28',
   'root',
   '12341234',
   'dbproject');
-    $ISBN = $_GET['ISBN'];
-    $sql = 'SELECT * FROM Book WHERE ISBN=\''.$ISBN.'\'';
+    $searchquery = $_GET["category"];
+    $sql = 'SELECT * FROM Book WHERE Category like "%'.$searchquery.'%"';
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
-    $sql2 = 'SELECT * FROM BookDetail WHERE ISBN=\''.$ISBN.'\'';
-    $result2 = mysqli_query($conn, $sql2);
-    $row2 = mysqli_fetch_array($result2);
-
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,18 +147,15 @@
         <!--================Product Details Area =================-->
         <section class="product_details_area">
             <div class="container">
+			<h2>카테고리 : '<?php echo $_GET['category']?>'</h2>
+			<hr></hr>
+			<?php
+			if($result->num_rows==0) {?> <a style="text-align:center"><h2><?php echo "검색 결과가 없습니다.";?></h2></a><?php
+			}
+			for($i=0;$i<$result->num_rows;$i++){
+			?>
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="product_details_slider">
-                            <div id="product_slider" class="rev_slider" data-version="5.3.1.6">
-                                <ul>    
-                                        <img src="img/thumbnail/<?php echo $row2['Image'] ?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
-                                    </li>
-                                   
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="img/thumbnail/<?php echo $row['ISBN'] ?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                     <div class="col-lg-8">
                         <div class="product_details_text">
                             <h1><B><?php echo $row['Title'];?></h1><br>
@@ -171,17 +164,10 @@
                                 <t><?php echo $row['PublishedDate'];?></t>
                             </h6>
                             
-                            <h6>ISBN <B><?php echo $ISBN;?></h6><br>
+                            <h6>ISBN <B><?php echo $row['ISBN'];?></h6><br>
                             <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
-                                <!--<div class="custom">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                </div>
-								-->
-                                <div class="add_cart_btn" id="cart">add to cart</div>
-
+                                <a class="add_cart_btn" href="/BookDetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a>
                             </div>
                             <div class="shareing_icon">
                                 <ul>
@@ -195,113 +181,23 @@
                         </div>
                     </div>
                 </div>
+				<hr></hr>
+			<?php
+			$row = mysqli_fetch_array($result);
+			}
+			?>
             </div>
         </section>
         <!--================End Product Details Area =================-->
         
         <!--================Product Description Area =================-->
-        <section class="product_description_area">
-            <div class="container">
-                <nav class="tab_menu">
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">책소개</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">독자 리뷰</a>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <h5><?php echo $row2['Summary']?></h5>
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-					<?php
-					$sql3 = 'SELECT * FROM ReviewBoard WHERE ISBN=\''.$ISBN.'\'';
-					$result3 = mysqli_query($conn, $sql3);
-					$row3 = mysqli_fetch_array($result3);
-					if($result3->num_rows==0) {
-							?>
-							<h4 style="text-align:center">아직 작성된 리뷰가 없습니다.</h4>
-							<?php
-						}
-					for($i = 0; $i<$result3->num_rows;$i++){
-					?>
-						<a style="color:#BBBBBB"><h6>작성자 : <?php echo $row3['ID']?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row3['Date_']?></h6></a><BR>
-						<h4><?php echo $row3['Title']?></h4><BR>
-						<h6><?php echo $row3['Body']?></h6><BR>
-						<hr></hr>
-					<?php
-					$row3 = mysqli_fetch_array($result3);
-					}
-					?>
-                    <?php
-					if( $_SESSION['logged'] == "YES" ){
-					?>
-					<hr></hr>
-					<form action="/do_review.php?ISBN=<?php echo $_GET["ISBN"]?>" method="post">
-					<input type=text name="title"id="title" style="border:none;text-align:center;width:15%;" placeholder = "제목" >
-					<input type=text name="body" id="body" style="border:none;text-align:center;width:70%;" placeholder = "이 책에 대한 리뷰가 있으신가요? 당신의 리뷰를 작성해 주세요." >
-					<input class="add_cart_btn" style="width:14%;text-align:center;" type = "submit" value="리뷰작성"/>
-					</form>
-					<?php
-					}
-					?>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!--================End Product Details Area =================-->
         
         <!--================End Related Product Area =================-->
-        <section class="related_product_area">
-            <div class="container">
-                <div class="related_product_inner">
-                    <h2 class="single_c_title"><B>같은 분야의 인기 도서</h2>
-                    <div class="row">
-                        <?php
-                            $sql3 = 'SELECT Title,Price,ISBN FROM Book WHERE Category=\''.$row['Category'].'\'';
-                            $result3 = mysqli_query($conn, $sql3);
-
-                            for($i = 0; $i<4; $i++){
-                                $row3 = mysqli_fetch_array($result3);
-                                $sql4 = 'SELECT Image FROM BookDetail WHERE ISBN=\''.$row3['ISBN'].'\'';
-                                $result4 = mysqli_query($conn, $sql4);
-                                $row4 = mysqli_fetch_array($result4);
-                                ?>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="l_product_item">
-                                        <div class="l_p_img">
-                                            <img class="img-fluid" src="img/thumbnail/<?php echo $row4['Image'] ?>.jpg" alt="">
-                                        </div>
-                                        <div class="l_p_text">
-                                            <ul>
-                                                <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row3['ISBN']?>">상세정보</a></li>
-                                            </ul>
-                                            <h4><?php echo $row3['Title'];?></h4>
-                                            <h5><?php echo $row3['Price'];?>원</h5>
-                                        </div>
-                                     </div>
-                                </div>
-                                <?php
-                            }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!--================End Related Product Area =================-->
                 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
-        <script type="text/javascript">
-            $("#cart").click(function(){
-            <?php
-
-                $cartSQL = "INSERT INTO Order_(ISBN,CustomerNumber,Amount,State,Date_) VALUES(\"".$ISBN."\",".$_SESSION['user_n'].",1,0,now())";
-                $cartresult = mysqli_query($conn, $cartSQL);
-            ?>
-			alert("장바구니에 추가되었습니다");
-        });                                    
-        </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

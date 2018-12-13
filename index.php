@@ -125,14 +125,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <?php
 								}
 								?>
-								<li class="cart"><a href="#"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
-                                <li class="h_price">
-                                    <select class="selectpicker">
-                                        <option>$0.00</option>
-                                        <option>$0.00</option>
-                                        <option>$0.00</option>
-                                    </select>
-                                </li>
+								<li class="cart"><a href="/cart.php"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -151,7 +144,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav categories">
+                        <!--<ul class="navbar-nav categories">
                             <li class="nav-item">
                                 <select class="selectpicker">
                                     <option>카테고리</option>
@@ -162,12 +155,10 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 									<option>인문</option>
                                 </select>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav">
+                        </ul>-->
+                        <ul class="navbar-nav" style="margin:0 auto;">
                             <li class="nav-item dropdown submenu active">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                홈 <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
+                                <li class="nav-item"><a class="nav-link" href="/index.php">홈</a></li>
                                 <!--<ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="index.html">Home Simple</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-carousel.html">Home Carousel</a></li>
@@ -177,7 +168,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                     <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
                                 </ul>-->
                             </li>
-                            <li class="nav-item dropdown submenu">
+                            <!--<li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Pages <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
@@ -209,6 +200,12 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
                                 </ul>
                             </li>
+							-->
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=000">소설</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=100">시/에세이</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=200">경제/경영</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=300">자기계발</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=400">인문</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
