@@ -174,17 +174,7 @@
                             <h6>ISBN <B><?php echo $ISBN;?></h6><br>
                             <h2><?php echo $row['Price'];?>원</h2>
                             <div class="quantity">
-                                <!--<div class="custom">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                </div>
-<<<<<<< HEAD
-
                                 <a class="add_cart_btn" href="/addtocart.php?ISBN=<?php echo $ISBN?>">add to cart</a>
-=======
-								-->
-                                <div class="add_cart_btn" id="cart">add to cart</div>
                             </div>
                             <div class="shareing_icon">
                                 <ul>
