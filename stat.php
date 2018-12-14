@@ -60,6 +60,7 @@
 
         // Create the data table.
         var data = new google.visualization.DataTable();
+		var data2 = new google.visualization.DataTable();
         data.addColumn('string', '제목');
         data.addColumn('number', '개수');
         data.addRows([
@@ -74,15 +75,65 @@
 		}
 		?>
         ]);
+		data2.addColumn('string', '장르');
+		data2.addColumn('number', '개수');
+		data2.addRows([
+		<?php
+		$sql = "select * from Order_";
+		$resultfortotal = mysqli_query($conn, $sql);
+		//$rowfortotal = mysqli_fetch_array($resultfortotal);
+		$essay = 0;
+		$sosul = 0;
+		$kyung = 0;
+		$jagii = 0;
+		$inmun = 0;
+		for($j=0;$j<$resultfortotal->num_rows;$j++){
+			$rowfortotal = mysqli_fetch_array($resultfortotal);
+			$sql = 'select * from Book where ISBN='.$rowfortotal['ISBN'];
+			$resultfortotal2 = mysqli_query($conn,$sql);
+			$rowfortotal2 = mysqli_fetch_array($resultfortotal2);
+			if($rowfortotal2['Category'] == 000){
+				$sosul +=1;
+			}
+			else if($rowfortotal2['Category'] == 100){
+				$essay +=1;
+			}
+			else if($rowfortotal2['Category'] == 200){
+				$kyung +=1;
+			}
+			else if($rowfortotal2['Category'] == 300){
+				$jagii +=1;
+			}
+			else if($rowfortotal2['Category'] == 400){
+				$inmun +=1;
+			}
+		}
+		
+		for($i=0;$i<5;$i++){
+		if($i!=4){
+			if($i==0) echo "['소설',".$sosul."],";
+			if($i==1) echo "['시/에세이',".$essay."],";
+			if($i==2) echo "['경제/경영',".$kyung."],";
+			if($i==3) echo "['자기계발',".$jagii."],"; 
+		}
+		else echo "['인문',".$inmun."]";
+		}
+		?>
+		]);
 
         // Set chart options
-        var options = {'title':'구매한 책의 이름과 개수',
+        var options = {'title':'내가 구매한 책의 이름과 개수',
+                       'width':1000,
+                       'height':500};
+		var options2 = {'title':'모두가 구매한 책의 장르와 개수',
                        'width':1000,
                        'height':500};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
         chart.draw(data, options);
+		chart2.draw(data2,options2);
       }
     </script>
 
@@ -159,6 +210,16 @@
                 <div class="row">
 				<?php
 				if( $_SESSION['logged'] == "YES" ) echo "<div id='chart_div'></div>";
+				else echo "통계는 로그인 해야만 볼 수 있습니다";
+				?>
+                    
+                </div>
+				<hr></hr>
+				<h2>전체 통계보기</h2>
+			<hr></hr>
+                <div class="row">
+				<?php
+				if( $_SESSION['logged'] == "YES" ) echo "<div id='chart_div2'></div>";
 				else echo "통계는 로그인 해야만 볼 수 있습니다";
 				?>
                     
