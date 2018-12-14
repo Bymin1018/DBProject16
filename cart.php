@@ -145,7 +145,7 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">
-                                                <img src="img/icon/close-icon.png" alt="">
+                                                <a href="/delete_cart.php?ISBN=<?php echo $row2['ISBN'] ?>"><img src="img/icon/close-icon.png" alt=""></a>
                                             </th>
                                             <td>
                                                 <div class="media">
