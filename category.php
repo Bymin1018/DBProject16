@@ -161,7 +161,7 @@
 			for($i=0;$i<$result->num_rows;$i++){
 			?>
                 <div class="row">
-                    <img src="img/thumbnail/<?php echo $row['ISBN'] ?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <img src="img/thumbnail/<?php echo $row['ISBN'] ?>.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina width="200" height="300">
                     <div class="col-lg-8">
                         <div class="product_details_text">
                             <h1><B><?php echo $row['Title'];?></h1><br>
