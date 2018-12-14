@@ -6,7 +6,7 @@
   '12341234',
   'dbproject');
   $ISBN=$_GET['ISBN'];
-  $deleteSQL = "DELETE FROM Order_ WHERE ISBN = \"".$ISBN."\"";
+  $deleteSQL = "DELETE FROM Order_ WHERE CustomerNumber=\"".$_SESSION['user_n']."\" AND ISBN = \"".$ISBN."\"";
   $deleteresult = mysqli_query($conn, $deleteSQL); 
   ?>
 
