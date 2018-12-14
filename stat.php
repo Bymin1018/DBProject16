@@ -8,7 +8,7 @@
     {
         $USER_N = $_SESSION['user_n'];
         //$sql = 'SELECT * FROM Order_ WHERE CustomerNumber='.$USER_N.' AND State=0';
-		$sql = "select count(*) as coun, ISBN from Order_ where CustomerNumber='".$USER_N."' AND State=0 group by ISBN order by coun desc";
+		$sql = "select count(*) as coun, ISBN from Order_ where CustomerNumber='".$USER_N."' AND State>0 group by ISBN order by coun desc";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_array($result);
     }
