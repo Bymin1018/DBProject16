@@ -134,48 +134,9 @@
                             <ul class="navbar-nav" style="margin:0 auto;">
                             <li class="nav-item dropdown submenu active">
                                 <li class="nav-item"><a class="nav-link" href="/index.php">홈</a></li>
-                                <!--<ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="index.html">Home Simple</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="home-carousel.html">Home Carousel</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="home-fullwidth.html">Home Full Width</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="home-parallax.html">Home Parallax</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="home-sidebar.html">Home Boxed</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
-                                </ul>-->
+                                
                             </li>
-                            <!--<li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pages <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="compare.html">Compare</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="checkout.html">Checkout Method</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="register.html">Checkout Register</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-2column.html">Prodcut No Sidebar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-3column.html">Prodcut Two Column</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-4column.html">Product Grid</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories Left Sidebar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-right-sidebar.html">Categories Right Sidebar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.html">Categories Grid Sidebar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="product-details.html">Prodcut Details 01</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="product-details2.html">Prodcut Details 02</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="product-details3.html">Prodcut Details 03</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="shopping-cart.html">Shopping Cart 01</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="shopping-cart2.html">Shopping Cart 02</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
-                                </ul>
-                            </li>
-							-->
+                            
 							<li class="nav-item"><a class="nav-link" href="/category.php?category=000">소설</a></li>
 							<li class="nav-item"><a class="nav-link" href="/category.php?category=100">시/에세이</a></li>
 							<li class="nav-item"><a class="nav-link" href="/category.php?category=200">경제/경영</a></li>
