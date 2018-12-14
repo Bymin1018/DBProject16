@@ -121,18 +121,11 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                 <?php
 								if($_SESSION['logged'] == "YES"){
 								?>
-								<li class="user"><a href="/"><span title="내 정보"><i class="icon-user icons"></i></span></a></li>
+								<li class="user"><a href="/stat.php"><span title="내 정보"><i class="icon-user icons"></i></span></a></li>
                                 <?php
 								}
 								?>
-								<li class="cart"><a href="#"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
-                                <li class="h_price">
-                                    <select class="selectpicker">
-                                        <option>$0.00</option>
-                                        <option>$0.00</option>
-                                        <option>$0.00</option>
-                                    </select>
-                                </li>
+								<li class="cart"><a href="/cart.php"><span title="장바구니"><i class="icon-handbag icons"></i></span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -151,7 +144,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav categories">
+                        <!--<ul class="navbar-nav categories">
                             <li class="nav-item">
                                 <select class="selectpicker">
                                     <option>카테고리</option>
@@ -162,12 +155,10 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 									<option>인문</option>
                                 </select>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav">
+                        </ul>-->
+                        <ul class="navbar-nav" style="margin:0 auto;">
                             <li class="nav-item dropdown submenu active">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                홈 <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
+                                <li class="nav-item"><a class="nav-link" href="/index.php">홈</a></li>
                                 <!--<ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="index.html">Home Simple</a></li>
                                     <li class="nav-item"><a class="nav-link" href="home-carousel.html">Home Carousel</a></li>
@@ -177,7 +168,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                     <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
                                 </ul>-->
                             </li>
-                            <li class="nav-item dropdown submenu">
+                            <!--<li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Pages <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
@@ -209,6 +200,12 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
                                 </ul>
                             </li>
+							-->
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=000">소설</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=100">시/에세이</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=200">경제/경영</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=300">자기계발</a></li>
+							<li class="nav-item"><a class="nav-link" href="/category.php?category=400">인문</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -321,37 +318,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
         <!--================End Slider Area =================-->
         
         <!--================Feature Add Area =================-->
-        <section class="feature_add_area">
-            <div class="container">
-                <div class="row feature_inner">
-                    <div class="col-lg-5">
-                        <div class="f_add_item">
-                            <div class="f_add_img"><img class="img-fluid" src="img/feature-add/f-add-1.jpg" alt=""></div>
-                            <div class="f_add_hover">
-                                <h4>Best Summer <br />Collection</h4>
-                                <a class="add_btn" href="#">Shop Now <i class="arrow_right"></i></a>
-                            </div>
-                            <div class="sale">Sale</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="f_add_item right_dir">
-                            <div class="f_add_img"><img class="img-fluid" src="img/feature-add/f-add-2.jpg" alt=""></div>
-                            <div class="f_add_hover">
-                                <h4>Best Summer <br />Collection</h4>
-                                <a class="add_btn" href="#">Shop Now <i class="arrow_right"></i></a>
-                            </div>
-                            <div class="off">10% off</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="f_add_item">
-                            <div class="f_add_img"><img class="img-fluid" src="img/feature-add/f-add-3.jpg" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!--================End Feature Add Area =================-->
         <?php
 		$sql = "SELECT * FROM BookDetail";
@@ -395,287 +362,70 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 				$row2=mysqli_fetch_array($result2);
 				} ?>
                 </div>
+				<hr></hr>
+                <div class="s_m_title">
+                    <h2>당신이 관심을 가질만한 도서</h2>
+                </div>
+                <div class="l_product_slider owl-carousel">
+				<?php
+		if($_SESSION['logged'] != "YES"){
+			echo "로그인 되어있지 않습니다. 추천도서는 로그인 사용자에게만 제공됩니다.";
+			
+		}
+		else{
+			echo "추천도서는 당신의 최근 구매내역에 따라 자동으로 분석되어 제공됩니다";
+			$sql = "select count(*) as coun, ISBN from Order_ group by ISBN order by coun desc";
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+			$sql = "select * from Book where ISBN=".$row['ISBN'];
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+			$sql = "select * from Book where Category=".$row['Category'];
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+		?>
+				<?php
+				for($i=0; $i<5; $i++){
+				?>
+                    <?php if($i%2==0) ?><div class="item">
+                        <div class="l_product_item">
+                            <div class="l_p_img">
+                                <img src="img/thumbnail/<?php echo $row['ISBN'];?>.jpg" alt="">
+                            </div>
+                            <div class="l_p_text">
+                                <ul>
+                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                    <li><a class="add_cart_btn" href="/bookdetail.php?ISBN=<?php echo $row['ISBN']?>">상세정보</a></li>
+                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                </ul>
+                                <h4><?php echo $row['Title']?></h4>
+                                <h5><?php echo $row['Price']?>원</h5>
+                            </div>
+                        </div>
+                    <?php if($i%2==0) ?></div>
+					<?php 
+				//$row = mysqli_fetch_array($result);
+				//$sql = "SELECT * FROM Book where ISBN ='".$row['ISBN']."'";
+				//$result2 = mysqli_query($conn,$sql);
+				$row=mysqli_fetch_array($result);
+				} 
+		}?>
+                </div>
 				
             </div>
         </section>
         <!--================End Our Latest Product Area =================-->
         
         <!--================Feature Big Add Area =================-->
-        <section class="feature_big_add_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="f_add_item white_add">
-                            <div class="f_add_img"><img class="img-fluid" src="img/feature-add/f-add-4.jpg" alt=""></div>
-                            <div class="f_add_hover">
-                                <h4>Best Summer <br />Collection</h4>
-                                <a class="add_btn" href="#">Shop Now <i class="arrow_right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="f_add_item white_add">
-                            <div class="f_add_img"><img class="img-fluid" src="img/feature-add/f-add-5.jpg" alt=""></div>
-                            <div class="f_add_hover">
-                                <h4>Best Summer <br />Collection</h4>
-                                <a class="add_btn" href="#">Shop Now <i class="arrow_right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!--================End Feature Big Add Area =================-->
         
         <!--================Product_listing Area =================-->
-        <section class="product_listing_area">
-            <div class="container">
-                <div class="row p_listing_inner">
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-8">
-                                <div class="p_list_text">
-                                    <h3>Men</h3>
-                                    <ul>
-                                        <li><a href="#">Down Jackets</a></li>
-                                        <li><a href="#">Hoodies</a></li>
-                                        <li><a href="#">Suits</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Casual Pants</a></li>
-                                        <li><a href="#">Sunglass</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-4">
-                                <div class="p_list_img">
-                                    <img src="img/product/p-categories-list/product-l-1.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-8">
-                                <div class="p_list_text">
-                                    <h3>Women</h3>
-                                    <ul>
-                                        <li><a href="#">Down Jackets</a></li>
-                                        <li><a href="#">Hoodies</a></li>
-                                        <li><a href="#">Suits</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Casual Pants</a></li>
-                                        <li><a href="#">Sunglass</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-4">
-                                <div class="p_list_img">
-                                    <img src="img/product/p-categories-list/product-l-2.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-8">
-                                <div class="p_list_text">
-                                    <h3>Accessories</h3>
-                                    <ul>
-                                        <li><a href="#">Down Jackets</a></li>
-                                        <li><a href="#">Hoodies</a></li>
-                                        <li><a href="#">Suits</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Casual Pants</a></li>
-                                        <li><a href="#">Sunglass</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-4">
-                                <div class="p_list_img">
-                                    <img src="img/product/p-categories-list/product-l-3.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!--================End Product_listing Area =================-->
         
         <!--================Featured Product Area =================-->
-        <section class="feature_product_area">
-            <div class="container">
-                <div class="f_p_inner">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="f_product_left">
-                                <div class="s_m_title">
-                                    <h2>Featured Products</h2>
-                                </div>
-                                <div class="f_product_inner">
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/product/featured-product/f-p-1.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Oxford Shirt</h4>
-                                            <h5>$45.05</h5>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/product/featured-product/f-p-2.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Puffer Jacket</h4>
-                                            <h5>$45.05</h5>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/product/featured-product/f-p-3.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Leather Bag</h4>
-                                            <h5>$45.05</h5>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/product/featured-product/f-p-4.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>Casual Shoes</h4>
-                                            <h5>$45.05</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="fillter_slider_inner">
-                                <ul class="portfolio_filter">
-                                    <li class="active" data-filter="*"><a href="#">men's</a></li>
-                                    <li data-filter=".woman"><a href="#">Woman</a></li>
-                                    <li data-filter=".shoes"><a href="#">Shoes</a></li>
-                                    <li data-filter=".bags"><a href="#">Bags</a></li>
-                                </ul>
-                                <div class="fillter_slider owl-carousel">
-                                    <div class="item shoes">
-                                        <div class="fillter_product_item bags">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                                <h5 class="sale">Sale</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Nike Max Air Vapor Power</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes bags">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                                <h5 class="new">New</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Fossil Watch</h5>
-                                                <h4><del>$250</del> $110</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                                <h5 class="discount">-10%</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>High Heel</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item shoes">
-                                        <div class="fillter_product_item bags">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                                <h5 class="sale">Sale</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Nike Max Air Vapor Power</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes bags">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                                <h5 class="new">New</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Fossil Watch</h5>
-                                                <h4><del>$250</del> $110</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                                <h5 class="discount">-10%</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>High Heel</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item shoes">
-                                        <div class="fillter_product_item bags">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                                <h5 class="sale">Sale</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Nike Max Air Vapor Power</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes bags">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                                <h5 class="new">New</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>Fossil Watch</h5>
-                                                <h4><del>$250</del> $110</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item woman shoes">
-                                        <div class="fillter_product_item">
-                                            <div class="f_p_img">
-                                                <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                                <h5 class="discount">-10%</h5>
-                                            </div>
-                                            <div class="f_p_text">
-                                                <h5>High Heel</h5>
-                                                <h4>$45.05</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!--================End Featured Product Area =================-->
         
         <!--================Form Blog Area =================-->

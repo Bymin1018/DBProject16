@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
     $conn = mysqli_connect(
   '35.236.158.28',
   'root',
