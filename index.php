@@ -322,7 +322,7 @@ $bestrowtitle = mysqli_fetch_array($bestrowtitlequery);
 		}
 		else{
 			echo "추천도서는 당신의 최근 구매내역에 따라 자동으로 분석되어 제공됩니다";
-			$sql = "select count(*) as coun, ISBN from Order_ group by ISBN order by coun desc";
+			$sql = "select count(*) as coun, ISBN from Order_ where CustomerNumber=".$_SESSION['user_n']." group by ISBN order by coun desc";
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_array($result);
 			$sql = "select * from Book where ISBN=".$row['ISBN'];
