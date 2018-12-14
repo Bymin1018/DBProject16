@@ -140,6 +140,10 @@
 							<li class="nav-item"><a class="nav-link" href="/category.php?category=300">자기계발</a></li>
 							<li class="nav-item"><a class="nav-link" href="/category.php?category=400">인문</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <ul class="navbar-nav justify-content-end">
+                                <li class="user_icon"><a href="/stat.php"><i class="icon-user icons"></i></a></li>
+                                <li class="cart_cart"><a href="/cart.php"><i class="icon-handbag icons"></i></a></li>
+                            </ul>
                         </ul>
                         </div>
                     </nav>
@@ -283,22 +287,8 @@
         <!--================End Related Product Area =================-->
                 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<<<<<<< HEAD
         <script src="js/jquery-3.2.1.min.js"></script>                                   
-=======
         <script src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
-        <script type="text/javascript">
-            $("#cart").click(function(){
-            <?php
-
-                $cartSQL = "INSERT INTO Order_(ISBN,CustomerNumber,Amount,State,Date_) VALUES(\"".$ISBN."\",".$_SESSION['user_n'].",1,0,now())";
-                $cartresult = mysqli_query($conn, $cartSQL);
-            ?>
-			alert("장바구니에 추가되었습니다");
-        });                                    
->>>>>>> 819092116cb3e69cf48ffeb03bd4f43aae14184a
-        </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
